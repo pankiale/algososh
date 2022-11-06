@@ -6,6 +6,7 @@ export const ALG_HAS_STARTED: "ALG_HAS_STARTED" = "ALG_HAS_STARTED";
 export const ALG_HAS_STOPPED: "ALG_HAS_STOPPED" = "ALG_HAS_STOPPED";
 export const GET_DATA_FOR_SORT: "GET_DATA_FOR_SORT" = "GET_DATA_FOR_SORT";
 export const MOVE_ELEMENT: "MOVE_ELEMENT" = "MOVE_ELEMENT";
+export const PAGE_LEFT: "PAGE_LEFT" = "PAGE_LEFT";
 
 export interface IAlgHasStartedAction {
     readonly type: typeof ALG_HAS_STARTED;
@@ -27,6 +28,9 @@ export interface IMoveElementAction {
     status: ElementStates;
 }
 
+export interface IPageLeft {
+    readonly type: typeof PAGE_LEFT;
+}
 
 export const algHasStartedAction = (): IAlgHasStartedAction => ({
     type: ALG_HAS_STARTED
@@ -41,6 +45,11 @@ export const getDataForSortAction = (text: TText[]): IGetDataForSortAction => ({
     text: text
 });
 
+export const pageLeftAction = (): IPageLeft => ({
+    type: PAGE_LEFT
+});
+
+
 export const moveElementAction = (index: number, letter: string, status: ElementStates): IMoveElementAction => ({
     type: MOVE_ELEMENT,
     index: index,
@@ -52,4 +61,5 @@ export type TAuthActions =
     IGetDataForSortAction
     | IAlgHasStoppedAction
     | IAlgHasStartedAction
-    | IMoveElementAction;
+    | IMoveElementAction
+    | IPageLeft;

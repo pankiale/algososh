@@ -1,4 +1,11 @@
-import {ALG_HAS_STARTED, ALG_HAS_STOPPED, GET_DATA_FOR_SORT, MOVE_ELEMENT, TAuthActions} from "../actions/alg";
+import {
+    ALG_HAS_STARTED,
+    ALG_HAS_STOPPED,
+    GET_DATA_FOR_SORT,
+    MOVE_ELEMENT,
+    PAGE_LEFT,
+    TAuthActions
+} from "../actions/alg";
 import {TText} from "../types/data";
 
 export type TAuthState = {
@@ -31,7 +38,9 @@ export const algReducer = (state:TAuthState = initialState, action: TAuthActions
         case GET_DATA_FOR_SORT: {
             return { ...state, text: action.text };
         }
-
+        case PAGE_LEFT: {
+            return { ...state, isFinished: false };
+        }
         case MOVE_ELEMENT: {
             return {...state, text: [...state.text].map((item, index)=>
                 index === action.index? {letter: action.letter, state: action.status}:item )

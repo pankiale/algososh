@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {SolutionLayout} from "../ui/solution-layout/solution-layout";
 import {Circle} from "../ui/circle/circle";
 import {Input} from "../ui/input/input";
@@ -11,7 +11,7 @@ import {
     algHasStartedAction,
     algHasStoppedAction,
     getDataForSortAction,
-    moveElementAction
+    moveElementAction, pageLeftAction
 } from "../../services/actions/alg";
 import {pause} from "../../utils";
 
@@ -61,6 +61,11 @@ export const StringComponent: React.FC = () => {
         },
         [form]
     );
+
+    useEffect(()=>{
+        return () => { dispatch(pageLeftAction())
+        }
+    }, []);
 
     return (
         <SolutionLayout title="Строка">

@@ -56,6 +56,7 @@ export const StringComponent: React.FC = () => {
             dispatch(algHasStartedAction());
             const array = createArrayForSort(form)
             dispatch(getDataForSortAction(array));
+            setValue({text: ''});
             sortArray(array);
         },
         [form]

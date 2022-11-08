@@ -24,6 +24,7 @@ export const FibonacciPage: React.FC = () => {
 
   const fib = (n: number): number[] => {
     let arr: number[] = [0,1];
+    if (n === 0) return [0];
     for (let i = 2; i < n + 1; i++){
       arr.push(arr[i - 2] + arr[i -1])
     }
@@ -39,6 +40,7 @@ export const FibonacciPage: React.FC = () => {
 
   const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (form === '') return alert('Введите число');
     dispatch(algHasStartedAction());
     dispatch(clearArrayAction('number'))
     const array = fib(Number(form));

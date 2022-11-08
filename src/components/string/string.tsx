@@ -44,23 +44,18 @@ export const StringComponent: React.FC = () => {
             dispatch(moveElementAction(i, temp.letter, ElementStates.Modified));
             end --;
         };
-
-        dispatch(algHasStoppedAction());
-
-        return array
     }
 
-    const onSubmit = useCallback(
+    const onSubmit =
         (e:React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             dispatch(algHasStartedAction());
             const array = createArrayForSort(form)
             dispatch(getDataForSortAction(array));
-            setValue({text: ''});
-            sortArray(array);
-        },
-        [form]
-    );
+            sortArray(array)
+                .then(()=> setValue({text: ''}))
+                .then(()=> dispatch(algHasStoppedAction()));
+        };
 
     useEffect(()=>{
         return () => { dispatch(pageLeftAction())

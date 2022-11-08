@@ -14,32 +14,27 @@ import {useDispatch, useSelector} from "../../services/hooks/hooks";
 import {pause} from "../../utils";
 
 export const FibonacciPage: React.FC = () => {
-  const {isLoader, isFinished, number} = useSelector(state => state.alg);
+  const {isLoader, number} = useSelector(state => state.alg);
   const dispatch = useDispatch();
   const [form, setValue] = useState<string>('');
-  const [arr, setArr] = useState<Array<number>>([]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
   const fib = (n: number): number[] => {
-    let arr: number[] =   [0,1];
+    let arr: number[] = [0,1];
     for (let i = 2; i < n + 1; i++){
-      let temp = arr[i - 2] + arr[i -1];
       arr.push(arr[i - 2] + arr[i -1])
     }
     return arr;
   }
 
   const plotArray = async (array: number[]) => {
-
     for (let i = 0; i < array.length; i++) {
       dispatch(addNumberAction(array[i]));
       await pause(500);
     };
-
-
   }
 
   const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
